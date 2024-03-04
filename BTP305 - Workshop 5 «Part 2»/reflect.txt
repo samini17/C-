@@ -1,0 +1,30 @@
+/*
+Student Name:Nahal Mousavi
+Student Email:nmousavi4@myseneca.ca
+Student ID : 133828178
+section:NBB
+Date: 23 oct 2022
+I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
+*/
+In this workshop, we implemented lambda expressions, function objects and exceptional handling. We also created a template class that manages a collection 
+of objects of type T. The Collection template class can allocate and deallocate dynamic memory. 
+
+The lambda expression updates the prices of the books according to a certain condition. The functor corrects the spelling mistakes in the title of the 
+movie and also in the descriptions of the movie and book. 
+
+Exceptions occur when a file is opened that does not exist or is missing. Also when an index of the collection is accessed that is out of range.
+
+The functors and lambdas are implemented differently. The functor in in a class that can overload the () operator with the help of which an object can 
+“look like” a function, thus a function object. This object can be called in various places. Whereas a lambda expression does not have the overloaded () 
+operator and contains only a few lines of code for performing simple tasks.
+
+We can change the SpellChecker constructor by first checking the const char* filename. If it is a nullptr then the constructor does nothing. Then we can 
+open the file and apply the check for the file. The constructor will only work if the file is opened successfully. Otherwise we can print a message for 
+the client that the file does not exist or couldn’t be opened successfully. This solution is cumbersome and requires more checks than the exception one.
+
+We can redesign the classes by making a separate module and then including this module in our classes.  This module will contain a public function will 
+receive in a string reference and return the extracted strings.
+
+The default constructor is necessary for both Movie and Book classes because when making the Collection, the template class will look for the appropriate 
+default constructor for the conversion. If we remove their default constructors, then the program will not compile because no appropriate default 
+constructor will be available.  

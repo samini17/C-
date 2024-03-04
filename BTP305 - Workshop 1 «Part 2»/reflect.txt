@@ -1,0 +1,29 @@
+/*
+Student Name:Nahal Mousavi
+Student Email:nmousavi4@myseneca.ca
+Student ID : 133828178
+section:NBB
+Date: 22 Sep 2022
+I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
+*/
+Internal linkage identifiers are not accessible outside the translation unit 
+they are declared in. An internal linkage identifier can be accessed by any 
+identifier within the unit. It is implemented by the keyword static. 
+Every translation unit has an identifier that implements external linkage.
+A translation unit's externally linked identifier is shared among translation 
+units and is located at the program's outermost level.
+Programs that declare variables as static allocate space for them for their 
+entire lifetime. Regardless of how many times a function is called, the static 
+variable is only allocated once, and its value is carried forward to the next call.
+I changed the memory allocation for brand and model of the car variable from 
+statically to dynamically memory allocation in part 2. I implemented rule of 3 which
+are copy constructor, copy assignment and copy destructor. I added 
+std::istream& operator>>(std::istream& is, Cars& car) and void operator>>(const Cars& car1, Cars& car2)
+to my program. I also changed the read function.
+one of my problem was getting memory leaks errors that I forgot to delete memory for 
+c_brand and c_model in the read function.
+I wrote std::cout << std::left << std::setw(2) << ++counter << ". "; befroe the if statement
+and it changed the line numbers.
+
+
+

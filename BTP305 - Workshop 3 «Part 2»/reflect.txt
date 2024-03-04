@@ -1,0 +1,52 @@
+/*
+Student Name:Nahal Mousavi
+Student Email:nmousavi4@myseneca.ca
+Student ID : 133828178
+section:NBB
+Date: 06 Oct 2022
+I have done all the coding by myself and only copied the code that my professor provided 
+to complete my workshops and assignments.
+*/
+This module was on Templates and it has three modules. A template provides a blueprint 
+for a class/function and provides for the implementation of generic polymorphism. 
+Generic or parametric polymorphism is the one in which we use the same name for 
+classes and functions sharing the same structure. 
+
+
+The modules are:
+1. Dictionary: It defines an element of dictionary having a term-definition pair
+2. Queue: It manages an array of elements of any data type.
+3. UniqueQueue: It is a queue in which no item can be repeated.
+
+The Queue and UniqueQueue modules are implemented in the header file only. 
+This is because the compiler creates a new class every time a type argument is 
+passed to it. The template is not a class definition itself, and therefore cannot 
+be compiled separately. In order to generate class definitions for each template 
+instantiation, the compiler needs to have access to the class template implementation 
+and its members. The header contains the implementation and if the implementations 
+were not provided inside the header file, they would not be accessible and the 
+program would not compile.
+
+Dictionary Module:
+This module was partially provided. I added 3 more member functions and a helper as 
+described below:
+1. Default constructor - necessary to make a Dictionary object
+2. overloaded == operator - to compare two dictionary instances in a UniqueQueue to 
+see whether they are the same or not (having the same key), the == operator is overloaded
+3. void display(std::ostream& os) const - a function that displays the dictionary on 
+the screen
+4. helper << operator - inserts a dictionary object into the ostream by calling the 
+display function.
+
+The reason for specializing the push() function is that for double values, the 
+comparison is to be done on the basis that whether the difference between two objects 
+is less than or equal to 0.005. So we implement this special behaviour by specializing 
+this function.
+
+The temporary data field is declared static in line number 15 in Queue.h. 
+The static class members are defined outside the class definition. Static variables 
+are created only one time and are shared by all objects of the class, so we cannot 
+associate them with class objects. Hence, they are not treated as part of individual 
+objects, and need to be defined explicitly outside class definition.
+
+

@@ -1,0 +1,86 @@
+//name: Nahal Mousavi
+//email: nmousavi4@myseneca.ca
+//Student ID: 133828178
+//date: dec,03, 2022
+//I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.//
+
+The project is completed in three milestones. Each milstone has one or more module which needed to be implemented. The modules contain various containers:
+1. struct
+2. double ended queues
+3. vectors
+They also implement STL iterators and algorithms. Onto their brief descriptions: 
+
+MS  01:
+There were two modules: Station and Utilities.
+Station module gives information (id, item name, description, serial number, and the quantity of items in the stock) about the stations on the assembly line. 
+All the customer orders are placed on the stations to receive service. Each station object manages a specific item and fills only that item of the order. 
+
+The Station constructor receives a constant string reference. This string contains a single record of a station. The constructor extracts the tokens and populates 
+the attributes accordingly. The extraction of tokens is done with the help of Utilities object.
+
+Utilities module contains methods to parse data from input files and extract tokens from them. It contains a global delimiter variable, based on which extraction 
+is done from the file. All utilities objects share this delimiter.
+
+It contains the method extractToken() which receives a constant string reference and extracts token. It also receives the reference to the next position of the token 
+and a bool variable that tells whether there are more tokens to be extracted or not. After extraction, it returns that token. Additionally, there are methods to set 
+and get the delimiter.
+
+MS 02:
+This module has only the CustomerObject module.
+
+CustomerObject module manages the customer order on the assembly line. It contains the following information about a single customer order:
+
+1. Item information in a struct. This struct holds information about item name, serial number and if the item is fiiled/unfilled.
+2. name of the customer: m_name
+3. name of product being assembled: m_product
+4. count of items in customer's order: m_cntItem
+5. a dynamic list of type Item, holding all the item objects in the order: m_lstItem
+
+The CustomerObject constructor receives a constant string reference, which contains the customer name, product name and the list of items in the order, 
+all separated by a delimiter. These tokens are also extracted using a local Utilities object. To initialize the dynamic list of items, a utility function 
+countItems() is implemented that takes in a string and counts the number of items in the list. Thus, m_cntItem is set to the value returned by this function.
+
+A CustomerObject cannot be copied. So copy assignment operator is deleted and copy constructor throws an exception if it gets called.
+There are functions to check if the order has been filled (isFilled()) and if all instances of a specific item in the order (isItemFilled()) have been filled. 
+It CustomerObject can also fill the order based on the item name and its quantity in stock, and can display the order on the screen.
+
+MS 03:
+The final milestone has Workstation and LineManager modules.
+
+A Workstation is just a station which fills one item in a Customer Order if possible on each step. To manage the orders, this module holds three global double ended 
+queues: pending, completed, and incomplete. At the end of the program, the orders are either completed or incomplete. A workstation can neither be copied nor moved 
+(deleted copy and move operations).
+
+A workstation object contains an orders queue, m_orders, which holds customer orders to receive service. It also contains a pointer which points to the next station 
+in the assembly line.
+
+If there are orders in the queue, the Workstation can fill these orders. It can also move an order to the next station in the assembly line, based on whether all the 
+items in the order relating to this instance of workstation have been filled or not. If the order is filled, it is moved to next workstation. If the next station 
+doesn't exist, it is moved to the completed queue. If the order cannot be filled, it is moved to the incomplete queue. Additionally, the class contains other 
+functionalities to assist in order management at a single workstation.
+
+A LineManager activates the assembly line and moves customer orders along it from he beginning to the end. It contains information such as:
+1. a vector of all the active stations: activeLine
+2. total number of customer orders: m_cntCustomerOrder
+3. a pointer to the first station on the line: m_firstStation
+
+LineManager contructor receives the file name which contains information about the active workstations and the next stations on the assembly line, 
+and also a collection of all the stations. Based on this information, I have used STL algorithm for_each to first link each station with its next station, 
+and then store them in the activeLine in the order described by the file. The first station on the active line is also identified and the total number of customer 
+orders is set to the number of orders in the pending queue.
+
+A LineManager links the stations in activeLine by reordering them. The reordering is such that the activeLine starts with the first station, then proceeds to the next 
+and so on.
+
+It contains a run() function which performs all the operations on all the workstations one time, keeping track of the number of times the function gets called in a 
+local variable. It starts by first moving a customer order from the pending queue to the first station, if the pending queue contains orders. It then performs fill 
+operation for all the work stations on the line. After that, it attempts to move an order from the current workstation to the next workstation. The function returns 
+true if all the customer orders have been processed, i.e. pending queue is empty and the orders have been moved to the completed queue or incomplete queue or both.
+
+Overall Reflection:
+This project checked and strengthened our skill of dynamic memory handling, exception handling, file handling, STL iterators and algorithms and all OOP concepts. 
+It was a great practice in implementing rule of three and rule of five (copy and move semantics). It encapsulated all of the topics we have learned and implemented 
+so far in this course's workshops. 
+
+I had experienced some difficulty in the third milestone, particularly in implementing the LineManager constructor and moving customer objects from one queue to 
+another, but I was able to solve the issues. So, overall, it was just a super knowledgeable and fun experience to complete this project.

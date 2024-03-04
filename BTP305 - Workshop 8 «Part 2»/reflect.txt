@@ -1,0 +1,48 @@
+//name: Nahal Mousavi
+//email: nmousavi4@myseneca.ca
+//Student ID: 133828178
+//date: nov,24, 2022
+//I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.//
+
+This workshop is basically designed in a way to make us implement smart and raw pointers and then observe the 
+difference between them.
+
+In the first part, there were 3 things required:
+
+1. rangeValidator function in EmpProfile.h: In the struct EmployeeeWage, a rangeValidator function is implemented which checks 
+if the salaray is out of range (less than 0 or greater than 99999). If it is, it throws a std::string as an exception.
+
+2. overloaded += operator for the GeneratingList.h to push an object in the vector. 
+It takes a raw pointer as the second operand. A raw pointer is basically declared/initialized using the ‘new’ operator:
+
+	Type* rawPtr = new Type();
+
+Therefore, they also need to be deleted explicitly using the ‘delete’ operator.
+
+3. implement the writeRaw Function in WritingRecord.cpp. It  compares the elements in the two received lists for common id's 
+and builds a list from the matching pairs using a raw pointer. 
+
+In the second part, we were supposed to overload the += operator in GeneratingList.h so that it takes a smart pointer as the second operand. 
+A smart pointer is the one which is declared on stack and has control of the resource it points to. We can say that is a 
+wrapper which contains the raw memory.
+
+writeSmart function was also implemented. It works like the writeRaw function but uses a smart pointer instead of the raw 
+pointer. A smart pointer is declared/initialized as:
+
+	std::shared_ptr<type> smartPtr(new Type());
+
+Since it resides on the stack, so when it goes out of scope, the memory it points to is also deallocated. 
+So we do not require explicit deallocation.
+
+The major advantage of smart pointers, as mentioned above, is that they have full control over the memory they point to 
+and can manage it themselves. When the smart pointer dies, it makes sure that the contained raw memory is also deleted. 
+So there is no explicit deallocation required nor it generates memory leak.
+
+Onto their differences:
+Raw pointers reside on heap while smart pointers are on stack.
+
+When an exception occurs, raw pointers are not deleted and it creates a memory leak. Whereas smart pointers make sure 
+that every object is deleted and thus no memory leak is generated.
+
+Raw pointers need explicit deallocation because they are initialized using the ‘new’ operator, while smart pointers 
+do not require this.

@@ -1,0 +1,37 @@
+///*
+//name: Nahal Mousavi
+//email: nmousavi4@myseneca.ca
+//Student ID: 133828178
+//date: OCT 13, 2022
+//I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
+//*/
+
+This workshop was based on three modules: Reservation, Restaurant and ConfirmationSender. The topics learned in this WS were mainly Composition and 
+Aggregation class relationships. A composition is a class which depends on its parent class for its existence. While in aggregation a class can be made up 
+of other existing classes but it does not depend on them for its existence.
+
+Reservation module:
+
+We were supposed to choose any type for the attributes. The types I chose are:
+
+1.	Char array for reservation ID – because it is an array of characters
+2.	String for name and email
+3.	Size_t for number of people because we are talking about the size of something which is also a positive value.
+4.	Unsigned int for day and hour because they are  unsigned integers
+
+The Restaurant class is in a composition relation with the Reservation class. This is because each Restaurant has a reservation and the reservation array 
+in Restaurant does not exist apart from the Restaurant object. The ConfirmationSender has an aggregation relation with the Reservation Class. 
+The ConfirmationSender can have reservations to confirm, but it can exist without it. 
+
+Difference between composition and aggregation implementation:
+
+For composition, as we implement the pointer version, so deep copying and assignment are required. So we have to code the copy constructor, assignment 
+operator and the destructor. We need the constructor to create the Reservation class object, the assignment operator to delete the previous object and 
+create new one, and the destructor to destroy the object.
+
+The aggregation is between ConfirmationSender and Reservation. From implementation point of view, ConfirmationSender does not manage Reservation objects 
+stored in the array. It is not responsible of creating the Reservation objects, as they are created outside of class and are passed as references.
+
+The difference between the implementations of move and copy functions in a composition and an aggregation is that for composition, we handle all the 
+resources inside the copy constructor and assignment. Whereas in aggregation, we are not responsible for the Reservation class and only deal with the 
+pointer array.

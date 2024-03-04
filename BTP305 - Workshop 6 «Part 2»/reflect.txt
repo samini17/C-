@@ -1,0 +1,30 @@
+//name: Nahal Mousavi
+//email: nmousavi4@myseneca.ca
+//Student ID: 133828178
+//date: nov,10, 2022
+//I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.//
+
+In this workshop, we implemented an Autoshop that sells Cars and Racecars. 
+It is implemented through STL containers, function templates, dynamic memory allocation and deallocation, and the errors 
+are handles using exception handling.
+
+We had to code the following modules: Car and Van, which both inherit Vehicle (already provided), Racecar which inherits Car, Luxuryvan 
+which intehirts Van, Autoshop which holds information about all the cars in the auto shop in a m_vehicle vector, and the Utilities module which holds the 
+function createInstance (which creates an instance of Car or Racecar depending on the tag).
+
+Onto the specific questions:
+The vector m_vehicle is an STL container which itself is made on stack. 
+
+When we dynamically make new instances of Car and/or Racecar objects, they are allocated on the heap. 
+So, the vector contains dynamic memory, and when it goes out of scope, the dynamic memory is still there and we 
+need to deallocate this memory in order to prevent memory leaks.
+
+In my solution, loadData() calls the createInstance function in a try block, and whatever exception is thrown is caught 
+in the catch block. The loadData() can be made to detect all possible errors in the function itself by checking the file 
+content. It calls the createInstance function only if all fields are valid.
+
+We use std::list<sdds::Vehicle*> and std::vector<sdds::Vehicle*> to store pointers to the Vehicle object. 
+We do not store simple objects because they require copying. Also, pointers are preferable since we need the vehicle 
+objects to line beyond the current scope (createInstance Function). We also need to call polymorphic functions on Vehicle 
+objects (the functions can either be of Car or Racecar) which is only possible using pointers or reference to an object. 
+So we cannot use std::list<sdds::Vehicle> and std::vector<sdds::Vehicle>.

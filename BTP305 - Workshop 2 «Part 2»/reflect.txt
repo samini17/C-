@@ -1,0 +1,59 @@
+/*
+name: Nahal Mousavi
+email: nmousavi4@myseneca.ca
+Student ID: 133828178
+date: SEP 29, 2022
+I have done all the coding by myself and only copied the code that my professor provided to complete my workshops and assignments.
+*/
+
+I've learned about move constructors last week, as in C++, copy constructors use l-value references and copy semantics (which means that the data of the object 
+is copied to another object rather than being pointed to by another object). A move constructor works with r-value 
+references and move semantics (move semantics involves pointing to a memory object that already exists).
+
+A move constructor moves resources around the heap, whereas a copy constructor copies the data of an existing 
+object and assigns it to a new object. A move constructor simply points to the data of the declared object and 
+nulls out the pointer of the temporary object, In this way move constructors prevent memory copies that are not necessary.
+In this case, it nulls out the pointer of the temporary object in order to prevent more than one object from pointing to 
+the same memory location. This is similar to the default member-wise copy constructor.
+
+The current method involves reading the file to the end, counting the records in the file, and then creating an array with 
+the appropriate size and reading the file again from the beginning and filling the array.
+For each new record in the file, we can call the add_match function and append it to the array instead of reading it again.
+TennisLog::TennisLog(const char* filename)
+	{
+		size_t Count{};
+		matches = nullptr;
+		count = 0;
+		string temp;
+		fstream file;
+		file.open(filename);
+		if (file.is_open()) {
+			while (!file.eof()) {
+				getline(file, temp, '\n');
+				Count++;
+			}
+			count = Count - 2;
+			matches = new TennisMatch[count];
+			file.clear();
+			file.seekg(0l, ios::beg);
+
+			getline(file, temp, '\n');
+			
+			for (int i = 0; i < count; i++) {
+				getline(file, matches[i].tournamentID, ',');
+				getline(file, matches[i].tournamentName, ',');
+				file >> matches[i].matchID;
+				file.ignore();
+				getline(file, matches[i].winner, ',');
+				getline(file, matches[i].loser, '\n');
+			}
+
+		}file.close();
+
+	}
+
+
+In order to calculate the current date and time, we use system_clock.
+The steady_clock function is used when measuring a piece of code's execution time. 
+Stopwatches are unadjustable monotonic clocks, while steady-clocks are stopwatches.
+System_clock represents the system-wide real time wall clock.
